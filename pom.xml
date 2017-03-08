@@ -1,97 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
-	license agreements. See the NOTICE file distributed with this work for additional 
-	information regarding copyright ownership. The ASF licenses this file to 
-	You under the Apache License, Version 2.0 (the "License"); you may not use 
-	this file except in compliance with the License. You may obtain a copy of 
-	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
-	by applicable law or agreed to in writing, software distributed under the 
-	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
-	OF ANY KIND, either express or implied. See the License for the specific 
-	language governing permissions and limitations under the License. -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>fr.redsocks</groupId>
-	<artifactId>messaging</artifactId>
-	<version>1.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>messaging TomEE Webapp</name>
-	<url>http://tomee.apache.org</url>
+  	<artifactId>messaging.web</artifactId>
+  	<version>1.0</version>
+  	<packaging>war</packaging>
+  	<name>messaging</name>
+  	<description>messaging Serveur</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>jboss.org</id>
+			<name>The JBoss maven repo</name>
+			<url>http://repository.jboss.com/maven2</url>
+		</repository>
+		<repository>
+			<id>java.net</id>
+			<name>The Java.net repo</name>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>jboss-snapshot</id>
+			<name>The JBoss maven repo</name>
+			<url>http://snapshots.jboss.org/maven2</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0-6</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- to test with TomEE and Arquillian <dependency> <groupId>org.apache.openejb</groupId> 
-			<artifactId>arquillian-tomee-remote</artifactId> <version>1.7.0</version> 
-			<scope>test</scope> </dependency> <dependency> <groupId>org.jboss.arquillian.junit</groupId> 
-			<artifactId>arquillian-junit-container</artifactId> <version>1.1.5.Final</version> 
-			<scope>test</scope> </dependency> <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
-			<version>4.11</version> <scope>test</scope> </dependency> -->
-
-		<!-- to test with OpenEJB embedded and Arquillian <dependency> <groupId>org.apache.openejb</groupId> 
-			<artifactId>arquillian-openejb-embedded-4</artifactId> <version>4.7.0</version> 
-			<scope>test</scope> </dependency> <dependency> <groupId>org.jboss.arquillian.junit</groupId> 
-			<artifactId>arquillian-junit-container</artifactId> <version>1.1.5.Final</version> 
-			<scope>test</scope> </dependency> <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
-			<version>4.11</version> <scope>test</scope> </dependency> -->
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.17</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.openejb.maven</groupId>
-				<artifactId>tomee-maven-plugin</artifactId>
-				<version>1.7.0</version>
-				<configuration>
-					<context>ROOT</context>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.openjpa</groupId>
-				<artifactId>openjpa-maven-plugin</artifactId>
-				<version>2.3.0</version>
-				<configuration>
-					<includes>**/entities/*.class</includes>
-					<excludes>**/entities/XML*.class</excludes>
-					<addDefaultConstructor>true</addDefaultConstructor>
-					<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
-				</configuration>
-
-				<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
@@ -128,8 +67,141 @@
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
-			</plugin>
 
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>project.properties</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			
+			
+			<plugin>
+				
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				  <configuration>
+					
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<webappDirectory>${project.build.directory}/${project.build.finalName}-patched</webappDirectory>
+				</configuration>
+				
+				<executions>
+				<execution>
+					<id>prepare-war</id>
+					<phase>prepare-package</phase>
+					<goals>
+						<goal>exploded</goal>
+					</goals>					
+					 <configuration>
+					<!--   <warSourceExcludes>js/**</warSourceExcludes> -->
+					 <warSourceDirectory>WebContent</warSourceDirectory>
+          				<webappDirectory>${project.build.directory}/${project.build.finalName}-patched/</webappDirectory>
+        			</configuration>
+				</execution>
+				
+				<execution>
+					<id>package</id>
+					<phase>package</phase>
+					<goals>
+						<goal>war</goal>
+					</goals>
+					
+					<configuration>					
+        				<warSourceDirectory>${project.build.directory}/${project.build.finalName}-patched</warSourceDirectory>
+      					<warName>${project.build.finalName}</warName>
+      				</configuration>
+				</execution>
+				</executions>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<!-- here the phase you need -->
+						<phase>validate</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${basedir}/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src/main/resources</directory>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+			
+			<!-- 	<plugin>
+        <groupId>com.samaxes.maven</groupId>
+        <artifactId>minify-maven-plugin</artifactId>
+        <version>1.7.5</version>
+        <executions>
+          <execution>
+            <id>default-minify</id>
+            <phase>prepare-package</phase>
+            <configuration>
+            	<charset>UTF-8</charset>
+            	<closureAngularPass>true</closureAngularPass>
+            	<webappSourceDir>${basedir}/WebContent</webappSourceDir>
+     			<webappTargetDir>${project.build.directory}/${project.build.finalName}-patched</webappTargetDir>
+
+            <jsSourceDir>js</jsSourceDir>
+              
+              <jsSourceFiles>
+              	<jsSourceFile>mainApp.js</jsSourceFile>
+              </jsSourceFiles>
+              <jsSourceIncludes>            
+               <jsSourceInclude>app/**/*</jsSourceInclude>   
+                <jsSourceInclude>directives/**/*</jsSourceInclude> 
+                 <jsSourceInclude>services/**/*</jsSourceInclude>
+                <jsSourceInclude>controllers/**/*</jsSourceInclude>
+              </jsSourceIncludes>
+              
+              
+              <jsTargetDir>js/${project.version}</jsTargetDir>
+                <jsFinalFile>opportunity.js</jsFinalFile>
+            </configuration>
+            <goals>
+              <goal>minify</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+			 -->
+			
+			
+			
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -137,19 +209,11 @@
 				<configuration>
 					<url>http://127.0.0.1:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/tuto</path>
+					<path>/messaging</path>
 					<warFile>${project.build.directory}/${project.build.finalName}.war</warFile>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>apache-snapshot</id>
-			<name>Apache Snapshot Repository</name>
-			<url>https://repository.apache.org/content/groups/snapshots/</url>
-		</repository>
-	</repositories>
-
+	<groupId>messaging</groupId>
 </project>
