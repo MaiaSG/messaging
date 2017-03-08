@@ -1,0 +1,9 @@
+/*
+2017-01-19 14:59:23.525 CET
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'itecte',8,2);
+INSERT INTO `opportunity`.`gcm`(`code`,`libelle`,`niveau`,`filier' at line 1*/
+
+itecte',8,2);
+INSERT INTO `opportunity`.`gcm`(`code`,`libelle`,`niveau`,`filiere_id`)
+VALUES('ASP','Spécialiste d\'Application',1,2);
+

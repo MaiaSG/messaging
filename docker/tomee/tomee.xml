@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+  <!-- see http://tomee.apache.org/containers-and-resources.html -->
+
+  <!-- activate next line to be able to deploy applications in apps -->
+  <!-- <Deployments dir="apps" /> -->
+  
+  
+<Resource id="TutoDSNonJTA" type="javax.sql.DataSource" >
+	
+    accessToUnderlyingConnectionAllowed = false
+    connectionProperties = 
+    DefaultAutoCommit = false
+    defaultReadOnly = 
+    definition = 
+    ignoreDefaultValues = false
+    initialSize = 0
+    JdbcDriver = com.mysql.jdbc.Driver
+    JdbcUrl = jdbc:mysql://messaging-mysql:3306/mydb
+    JtaManaged = false
+    maxActive = 20
+    maxIdle = 20
+    maxOpenPreparedStatements = 0
+    maxWaitTime = -1 millisecond
+    minEvictableIdleTime = 30 minutes
+    minIdle = 0
+    numTestsPerEvictionRun = 3
+    Password = admin 
+    passwordCipher = PlainText
+    poolPreparedStatements = false
+    serviceId = 
+    testOnBorrow = true
+    testOnReturn = false
+    testWhileIdle = false
+    timeBetweenEvictionRuns = -1 millisecond
+    UserName = admin
+    validationQuery = SELECT 1
+</Resource>
+  
+  <Resource id="TutoDS" type="javax.sql.DataSource" >
+	
+    accessToUnderlyingConnectionAllowed = false
+    connectionProperties = 
+    DefaultAutoCommit = false
+    defaultReadOnly = 
+    definition = 
+    ignoreDefaultValues = false
+    initialSize = 0
+    JdbcDriver = com.mysql.jdbc.Driver
+    JdbcUrl = jdbc:mysql://messaging-mysql:3306/mydb
+    JtaManaged = true
+    maxActive = 20
+    maxIdle = 20
+    maxOpenPreparedStatements = 0
+    maxWaitTime = -1 millisecond
+    minEvictableIdleTime = 30 minutes
+    minIdle = 0
+    numTestsPerEvictionRun = 3
+    Password = admin 
+    passwordCipher = PlainText
+    poolPreparedStatements = false
+    serviceId = 
+    testOnBorrow = true
+    testOnReturn = false
+    testWhileIdle = false
+    timeBetweenEvictionRuns = -1 millisecond
+    UserName = admin
+    validationQuery = SELECT 1
+	autoReconnect=true
+</Resource>
+
+</tomee>
