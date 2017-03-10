@@ -1,0 +1,17 @@
+<div data-ng-controller="connectController">
+	<form name="Connexion" data-ng-submit="connect()" class="form-group">
+		<div>
+			<label for="login"> Login : </label>
+			<input type="text" data-ng-model="login" name="login" required placeholder="Login" />
+		</div>
+		<div>
+			<label for="password">Mot de passe : </label>
+			<input type="password" data-ng-model="password" name="password" required placeholder="Mot de passe" />
+		</div>
+		<div data-ng-hide="connectErr"><p class="text-danger">Erreur dans votre login et/ou mot de passe"</p></div>
+		<input type="SUBMIT" value="Se connecter" name="connect" />
+	</form>
+	<div data-ng-hide="connectOk"><p class="text-info">Bienvenue</p></div>
+</div>
+	
+	

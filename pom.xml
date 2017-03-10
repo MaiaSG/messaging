@@ -108,18 +108,18 @@
 				</configuration>
 				
 				<executions>
-				<execution>
+			 	<execution>
 					<id>prepare-war</id>
 					<phase>prepare-package</phase>
 					<goals>
 						<goal>exploded</goal>
 					</goals>					
 					 <configuration>
-					<!--   <warSourceExcludes>js/**</warSourceExcludes> -->
+				<!-- 	  <warSourceExcludes>js/**</warSourceExcludes> -->
 					 <warSourceDirectory>WebContent</warSourceDirectory>
           				<webappDirectory>${project.build.directory}/${project.build.finalName}-patched/</webappDirectory>
         			</configuration>
-				</execution>
+				</execution> 
 				
 				<execution>
 					<id>package</id>
