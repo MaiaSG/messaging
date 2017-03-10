@@ -29,9 +29,18 @@ app.factory('connectService', [ '$q', '$http', function($q, $http) {
 		},
 		login : function(ulogin, upassword) { // Envoi par JWT
 				return $http.post("http://localhost:8080/users/connect",{login:ulong,password:upassword}).then(function (response){
+					if(response.token){
 					console.log(response);
+					localStorage.currentUser={ username: ulogin,token: response.token };
+					localstorage.setItem('login',ulogin);
+                    $http.defaults.headers.common.Authorization = 'Bearer ' + response.token;
+					}
 					return responde.data;
 				})
-		}
+		},
+		logout : function() {
+            delete $localStorage.currentUser;
+            $http.defaults.headers.common.Authorization = '';
+        }
 	}
 } ]);

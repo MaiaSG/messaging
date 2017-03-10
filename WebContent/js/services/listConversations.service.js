@@ -21,6 +21,11 @@ app.factory('listService', [ '$q', '$http', function($q, $http) {
 		},
 		InitLIste : function(id){
 			
+		},
+		getUser : function() {
+			return $http.get("http://localhost:8080/users/me").then(function (response) {
+				return response.data;
+			});
 		}
 	};
 
