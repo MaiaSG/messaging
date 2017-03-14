@@ -1,13 +1,17 @@
-app.controller('listController',['$scope','listService','$rootScope',function($scope,listService,$rootScope){
+app.controller('listController',['$scope','listService','$rootScope','$location',function($scope,listService,$rootScope,$location){
 	$scope.user={};
 	$scope.listeConversation=[];
 	$scope.open = function(idConv){ // Ouverture d'une conversation
 		
 	}
 	
-	listService.TestInitListe("8").then(function(result){  //Initialisation de la liste des conversations
+	listService.TestInitListe("8").then(function(result){  // Initialisation de la liste des conversations
 		$scope.listConversation=result;
 	})
-	$scope.user.login=$rootScope.login;
-	console.log(localStorage.getItem('login'));
+	$scope.user.login=$rootScope.login;	
+	$scope.plusOne = function() {
+		$location.path("/add");
+
+	  }
+	
 }]);

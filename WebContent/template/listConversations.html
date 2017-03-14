@@ -1,9 +1,9 @@
-<div data-ng-controller="listController">
-	<p>Bonjour </p>
+<div data-ng-controller="listController" class="container">
+	<h1>Bonjour </h1>
 	<div data-ng-repeat="conversation in listConversation">
-		<button data-ng-click="open(conversation.id)">{{conversation.titre}} </button>
-	
+		<button data-ng-click="open(conversation.id)" type="button" class="btn btn-default btn-lg btn-block">{{conversation.titre}} </button>
 	</div> 
+	<p class="addConv" data-ng-click="plusOne()">+</p>
 </div>
 
 

@@ -19,11 +19,18 @@ app.factory('listService', [ '$q', '$http', function($q, $http) {
 			deferred.resolve(listTest);
 			return deferred.promise;
 		},
-		InitLIste : function(id){
-			
+		InitListe : function(id){
+			return $http.get("http://localhost:8080/conv").then(function (response) {
+				return response.data;
+			});
 		},
 		getUser : function() {
 			return $http.get("http://localhost:8080/users/me").then(function (response) {
+				return response.data;
+			});
+		},
+		getUsers : function() {
+			return $http.get("http://localhost:8080/users").then(function (response) {
 				return response.data;
 			});
 		}

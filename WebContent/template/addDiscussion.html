@@ -1,0 +1,16 @@
+<div class="container" data-ng-controller="addController">
+	<h2>Creation d'une nouvelle discussion</h2>
+	<h3>Selectionner des destinataires</h3>
+	<form>
+		<input class="input-sm form-control" placeholder="Rechercher quelqu'un" type="text" data-ng-model="filtreUtilisateur">
+	</form>
+	</br>
+	<div  data-ng-repeat="user in users | filter:filtreUtilisateur">
+    	<label> <input type="checkbox" data-ng-checked="exists(user.id, check.ids)" data-ng-click="toggle(user.id, check.ids)"/>  {{ user.nom }} {{ user.prenom }} </label> 
+    </div>
+	<button data-ng-click="checkAll()" style="margin-right: 10px">Tout selectionner</button>
+	<button data-ng-click="uncheckAll()" style="margin-right: 10px">Tout deselectionner</button>
+
+
+</div>
+

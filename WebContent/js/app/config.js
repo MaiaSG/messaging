@@ -9,6 +9,10 @@ app.config(['$routeProvider',
 		templateUrl:  'template/listConversations.html',
 		controller: 'listController'
 	})
+	.when('/add', {
+		templateUrl:  'template/addDiscussion.html',
+		controller: 'addController'
+	})
 	.otherwise({
 		redirectTo: '/connect'
 	});
