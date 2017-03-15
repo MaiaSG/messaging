@@ -1,16 +1,35 @@
 <div class="container" data-ng-controller="addController">
 	<h2>Creation d'une nouvelle discussion</h2>
-	<h3>Selectionner des destinataires</h3>
-	<form>
-		<input class="input-sm form-control" placeholder="Rechercher quelqu'un" type="text" data-ng-model="filtreUtilisateur">
-	</form>
-	</br>
-	<div  data-ng-repeat="user in users | filter:filtreUtilisateur">
-    	<label> <input type="checkbox" data-ng-checked="exists(user.id, check.ids)" data-ng-click="toggle(user.id, check.ids)"/>  {{ user.nom }} {{ user.prenom }} </label> 
-    </div>
-	<button data-ng-click="checkAll()" style="margin-right: 10px">Tout selectionner</button>
-	<button data-ng-click="uncheckAll()" style="margin-right: 10px">Tout deselectionner</button>
-
-
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-heading">Selectionner des destinataires :</div>
+			<div class="container">
+				<form>
+					<input class="input-sm form-control" placeholder="Rechercher quelqu'un" type="text" data-ng-model="filtreUtilisateur">
+				</form>
+				
+				<div  data-ng-repeat="user in users | filter:filtreUtilisateur">
+			    	<label> <input type="checkbox" data-ng-checked="exists(user.id, check.ids)" data-ng-click="toggle(user.id, check.ids)"/>  {{ user.nom }} {{ user.prenom }} </label> 
+			    </div>
+				<button  data-ng-click="checkAll()">Tout selectionner</button>
+				<button data-ng-click="uncheckAll()">Tout deselectionner</button>
+				<div data-ng-hide="valide.Dest">
+					<p class="text-danger">	Veuillez selectionner au moins un destinataire</p>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">Titre de la conversation :</div>
+			<div class="container">
+			<form>
+				<input class="input-sm form-control" placeholder="Titre de la conversation" type="text" data-ng-model="titreConversation">	
+			</form>
+			<div data-ng-hide="valide.Titre">
+					<p class="text-danger">	Veuillez rentrer un titre</p>
+			</div>
+			</div>
+		</div>
+		<p class="addConv" data-ng-click="creation()">+</p>
+	</div>
 </div>
 

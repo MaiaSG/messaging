@@ -24,7 +24,7 @@ app.factory('addService', [ '$q', '$http', function($q, $http) {
 		nom: "Bran",
 		prenom: "Stark",
 		login : "bstark"
-	}];
+	}]; 
 	
 	return {
 		getUsers : function() {
@@ -36,6 +36,12 @@ app.factory('addService', [ '$q', '$http', function($q, $http) {
 			var deferred = $q.defer();
 			deferred.resolve(TestListe);
 			return deferred.promise;
+		},
+		creationConversation : function(titre,ids) {
+			return $http.post("http://localhost:8080/conv/"+titre,ids).then(function (response) {
+				console.log(response);
+				return response.data;
+			})
 		}
 	
 	}
